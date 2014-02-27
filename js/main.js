@@ -10,6 +10,7 @@ $.ajaxSetup({
 });
 
 $(function() {
+  console.log("Find me, I'm broken")
   App.router = new Router();
-  Backbone.history.start();
+  // Backbone.history.start();
 });
