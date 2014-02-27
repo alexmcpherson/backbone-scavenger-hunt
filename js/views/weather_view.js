@@ -16,11 +16,10 @@ App.Views.WeatherView = Backbone.View.extend({
 
   checkWeather: function(e) {
     e.preventDefault();
+    console.log('fetching weather data...');
+    //This view has a collection attached to it that needs fetching
 
-    //You'll need to set the right lat and lon on the collection
-    //so it can build its URL properly, then call fetch like below
-
-    // this.citiesView.collection.fetch();
+    this.citiesView.collection.fetch();
   },
 
   resetForm: function() {

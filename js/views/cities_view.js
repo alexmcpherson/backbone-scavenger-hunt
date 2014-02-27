@@ -7,7 +7,7 @@ App.Views.CitiesView = Backbone.View.extend({
 
     this.collection = new App.Collections.Cities();
 
-    //What's this line do?
+    //What's this line do? Relevant to #4
     this.collection.on('reset', _.bind(this.render, this));
   },
 

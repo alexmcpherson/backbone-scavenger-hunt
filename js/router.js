@@ -26,7 +26,11 @@ var Router = Backbone.Router.extend({
 
   weatherPage: function() {
     this.tearDown();
-    console.log("What else is in the Views area of App?")
+
+    this.currentView = new App.Views.WeatherView();
+    this.currentView.render();
+
+    this.$container.html( this.currentView.$el );
   },
 
   tearDown: function() {
