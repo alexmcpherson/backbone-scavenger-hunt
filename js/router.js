@@ -6,7 +6,7 @@ var Router = Backbone.Router.extend({
 
   routes: {
     '': 'index',
-    'about': 'aboutPageCallBack',
+    'about': 'aboutPage',
     'weather': 'weatherPage'
   },
 
@@ -25,15 +25,8 @@ var Router = Backbone.Router.extend({
   },
 
   weatherPage: function() {
-    $('li.hidden').removeClass('hidden');
-
-    //TODO
     this.tearDown();
-
-    this.currentView = new App.Views.WeatherView();
-    this.currentView.render();
-
-    this.$container.html( this.currentView.$el );
+    console.log("What else is in the Views area of App?")
   },
 
   tearDown: function() {
