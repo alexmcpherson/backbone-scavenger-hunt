@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="training, backbone, javascript, tutorial, exercises">
+    <meta name="author" content="Alex McPherson">
+
+    <title>Backbone Exercises</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="css/bootstrap.css" rel="stylesheet">
+
+    <!-- Add custom CSS here -->
+    <link href="css/sb-admin.css" rel="stylesheet">
+    <link rel="stylesheet" href="font-awesome/css/font-awesome.min.css">
+
+    <!-- Page Specific CSS -->
+    <link rel="stylesheet" href="css/custom.css">
+
+  </head>
+
+  <body>
+
+    <div id="wrapper">
+
+      <!-- Sidebar -->
+      <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="index.html">SB Admin</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse navbar-ex1-collapse">
+          <ul class="nav navbar-nav side-nav">
+            <li class="active"><a href="./index.html"><i class="fa fa-home"></i> Home</a></li>
+            <li><a href="#about"><i class="fa fa-question"></i> About Backbone</a></li>
+            <li class='hidden'><a href="#weather"><i class="fa fa-cloud"></i> Weather</a></li>
+          </ul>
+
+        </div><!-- /.navbar-collapse -->
+      </nav>
+
+      <div id="page-wrapper">
+
+        <div class="row">
+          <div class="col-lg-12">
+            <h1>Backbone <small>Training exercises</small></h1>
+            <ol class="breadcrumb">
+              <li class="active"><i class="fa fa-home"></i> Home</li>
+            </ol>
+
+            <div id="main">
+              <div class="alert alert-success alert-dismissable">
+                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                <p>This application is built with backbone. It was working last night, but something seems to have broken. Maybe git ate my homework. Anyhow, start with looking at that left navigation menu, and see if you can get it to render the <strong>about page</strong>.</p>
+                <p>Looking at the router is always a good starting point.</p>
+              </div>
+            </div>
+
+          </div>
+        </div><!-- /.row -->
+
+      </div><!-- /#page-wrapper -->
+
+    </div><!-- /#wrapper -->
+
+    <!-- JavaScript -->
+    <script src="js/vendor/jquery.js"></script>
+    <script src="js/vendor/bootstrap.js"></script>
+    <script src="js/vendor/underscore.js"></script>
+    <script src="js/vendor/backbone.js"></script>
+
+    <script src="js/main.js"></script>
+    <script src="js/router.js"></script>
+    <script src="js/views/about_view.js"></script>
+    <script src="js/views/weather_view.js"></script>
+    <script src="js/views/cities_view.js"></script>
+    <script src="js/models/city_model.js"></script>
+    <script src="js/collections/cities_collection.js"></script>
+
+
+    <script type="text/html" id="aboutView">
+      <div class="alert alert-success alert-dismissable">
+        <button type="button" class="close" data-dismiss="alert">&times;</button>
+        <p>Success! You got the about page rendering. Nice work. Have a gif: <br />
+          <img src="images/hello.gif" /><br />
+        </p>
+        <h2>Next task:</h2>
+        <p>Make the menu to the left show that you're on the about page, and update the H1 tag and breadcrumbs up above</p>
+        <p>These aren't part of the template, but are still the responsibility of the view.</p>
+      </div>
+    </script>
+
+    <script type="text/html" id="weatherView">
+      <div class="alert alert-success alert-dismissable">
+        <button type="button" class="close" data-dismiss="alert">&times;</button>
+        <p>Ok, you copy/pasted code to get this showing. Strong work. No .gif this time though. This page is SUPER close to working. You will need to find the holes in it and patch them up.
+        </p>
+        <h4>TODO:</h4>
+        <ul>
+          <li>Make the link on the sidebar active, and reset the breadcrumbs again</li>
+          <li>Find out why that submit button does nothing</li>
+          <li>Put the data from the server where it belongs</li>
+          <li>Make sure the table is getting updated</li>
+          <li>This reports in Kelvin (!?), make the models store that as something more reasonable</li>
+          <li>Make the reset button do something useful</li>
+        </ul>
+      </div>
+
+      <div class="row">
+        <div class="col-lg-6">
+          <form role="form">
+            <div class="form-group">
+              <label>Lat/Long</label>
+              <input class="form-control" placeholder="39.7 -105">
+              <p class="help-block">Denver is ~ 39.7&deg;  -105&deg;</p>
+            </div>
+            <button type="submit" class="btn btn-success">Submit</button>
+            <button type="reset" class="btn btn-default">Reset</button>
+          </form>
+        </div>
+      </div>
+    </script>
+
+    <script type="text/html" id="citiesView">
+      <h2>City Weather Results</h2>
+      <div class="table-responsive col-md-6">
+        <table class="table table-bordered table-hover">
+          <thead>
+            <tr>
+              <th>City</th>
+              <th>Current Temperature</th>
+              <th>General Weather</th>
+              <th>Winds</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% if (models.length == 0) { %>
+              <tr>
+                <td colspan='4'>
+                  <em>No results yet</em>
+                </td>
+              </tr>
+            <% } else {
+              _.each(models, function(city) {
+            %>
+              <tr>
+                <td><%= city.name %></td>
+                <td><%= city.main.temp %></td>
+                <td><%= city.weather[0].description %></td>
+                <td><%= city.wind.gust || city.wind.speed %></td>
+              </tr>
+
+            <% }); } %>
+          </tbody>
+        </table>
+      </div>
+    </script>
+
+  </body>
+</html>
